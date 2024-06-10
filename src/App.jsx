@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './component/home';
-import User from './component/user';
+import User from './component/user'
 import Admin from './component/admin';
 import Adminlist from './component/adminlist';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ const App = () => {
   const addMember = (newMember)=>{
     setmembers([
       ...members,
-      {...newMember,id:`pid-${User.length + 1}`}
+      {...newMember,id:`pid-${members.length + 1}`}
     ]);
   }
   return (
@@ -20,6 +20,7 @@ const App = () => {
     <Home/>
    <Admin addMember={addMember}/>
     <Adminlist members={members}/>
+    <User users={members}/>
    
     </>
     

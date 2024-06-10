@@ -1,17 +1,26 @@
 import React from 'react';
-import Navbar from './component/navbar';
 import Home from './component/home';
 import User from './component/user';
 import Admin from './component/admin';
+import Adminlist from './component/adminlist';
+import { useState } from 'react';
 
 
-export const App = () => {
+
+const App = () => {
+  const [members,setmembers]=useState([]);
+  const addMember = (newMember)=>{
+    setmembers([
+      ...members,
+      {...newMember,id:`pid-${User.length + 1}`}
+    ]);
+  }
   return (
     <>
-    {/* <Navbar/> */}
     <Home/>
-    {/* <User/> */}
-    {/* <Admin/> */}
+   <Admin addMember={addMember}/>
+    <Adminlist members={members}/>
+   
     </>
     
   );

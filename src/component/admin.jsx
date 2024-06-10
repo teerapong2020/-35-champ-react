@@ -1,34 +1,65 @@
-import React from 'react'
+import React, { useState } from "react";
 
- const Admin = () => {
+const Admin = ({ addMember }) => {
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [position, setPosition] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newMember = {
+      name,
+      lastName,
+      position,
+    };
+    addMember(newMember);
+    setName("");
+    setLastName("");
+    setPosition("");
+  };
+
   return (
     <>
-   
-    <h2 className='mt-16 flex justify-center font-black text-4xl'>Generation Thailand</h2>
-    <h2 className='flex justify-center font-black text-4xl'>Home - Admin Sector</h2>
-    <div className='mt-16 flex justify-center gap-24'>
-        <button className='font-black bg-gray-400'>User Home Sector</button>
-        <button className='font-black bg-gray-400'>Admin Home Sector</button>
-    </div>
-    <div >
-      <h1 className='font-black'>Create User Here</h1>
-      <input type="text" />
-      <input type="text" />
-      <input type="text" />
-    </div>
-    <table className='border-2 mt-16 border-slate-950 '>
-        <tr className='border-2	border-slate-950	'>
-            <th >Name</th>
-            <th>Last Name</th>
-            <th>Position</th>
-        </tr>
-        <tr className='border-2 border-slate-950	'>
-            <td>k</td>
-            <td>k</td>
-            <td>k</td>
-        </tr>
-    </table>
+      <form onSubmit={handleSubmit}>
+        <h2 className="font-black my-4 mx-16">Create User Here</h2>
+        <div className="mx-16">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            className="border-4"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
+          <label htmlFor="lastname">Lastname</label>
+          <input
+            type="text"
+            className="border-4"
+            id="lastname"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+
+          <label htmlFor="position">Position</label>
+          <input
+            type="text"
+            className="border-4"
+            id="position"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+
+          <button
+            type="submit"
+            className="bg-blue-950 mx-4 text-white p-4"
+          >
+            Save
+          </button>
+        </div>
+      </form>
     </>
-  )
-}
-export default Admin
+  );
+};
+
+export default Admin;
